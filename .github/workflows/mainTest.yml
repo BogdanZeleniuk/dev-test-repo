@@ -90,7 +90,7 @@ jobs:
       #- name: Report results
         working-directory: ./scripts/inside/
         run: |
-          curl -XPOST -u "${{ 'Bogdan Zeleniuk' }}:${{ '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' }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/BogdanZeleniuk/HOME-PROJECT-QA-TEST/actions/workflows/mainTest.yaml/dispatches --data '{"ref": "master"}'
+          curl -XPOST -u "${{ 'BogdanZeleniuk' }}:${{ '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' }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/BogdanZeleniuk/HOME-PROJECT-QA-TEST/actions/workflows/mainTest.yaml/dispatches --data '{"ref": "master"}'
 #    - name: Sleep
 #      run: sleep 15m
 #    - name: Run repository2 workflow
