@@ -88,7 +88,7 @@ jobs:
 #          unzip ${{ steps.download.outputs.download-path }}/allure-results.zip
 
       #- name: Report results
-        working-directory: ./scripts/inside/
+       # working-directory: ./scripts/inside/
         run: |
           curl -XPOST -u "${{ 'BogdanZeleniuk' }}:${{ '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' }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/BogdanZeleniuk/HOME-PROJECT-QA-TEST/actions/workflows/mainTest.yaml/dispatches --data '{"ref": "master"}'
 #    - name: Sleep
