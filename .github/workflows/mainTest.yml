@@ -1,0 +1,114 @@
+name: main-workflow
+
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+    branches:
+      - 'master'
+
+jobs:
+  #main-job:
+    #if: ${{ github.event.inputs.testInput == 'cba' || github.event.inputs.testInput == 'qwe' }}
+    # runs-on: ubuntu-latest
+    # steps:
+    #   - name: Checkout
+    #     uses: actions/checkout@v2
+    #   - uses: actions/upload-artifact@v2
+        # with:
+        #   name: 'allure-results'
+        #   path: ./e2e/imgFrom/
+  # main-job2:
+  #   if: ${{ '' == github.event.inputs.firstInput || 'matrix' == github.event.inputs.firstInput }}
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       value1: ['a', 'b', 'c']
+  #       value2: ['2a', '2b', '2c']
+
+  #       include:
+  #         - value1: 'value1'
+  #           value2: 'value2'
+  #         - value1: 'value2'
+  #           value2: 'value2'
+  #         - value1: 'value3'
+  #           value2: 'value2'
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v1
+  #     - name: input 1
+  #       run: echo ${{ matrix.value1 }}
+  #     - name: input 2
+  #       run: echo ${{ matrix.value2 }}
+  #     - name: input3
+  #       run: echo ${{ matrix.value1 }}
+  #     - name: Sleep
+  #       if: ${{ matrix.value1 == 'value1' }}
+  #       run: sleep 15m
+  # main-job4:
+  #   needs: [main-job, main-job2]
+  #   if: ${{ true }}
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+  #     - name: 'Echo job status'
+  #       run: echo ${{ job.main-job2.status }}
+  #     - name: 'Echo job status'
+  #       run: echo ${{ needs }}
+  #     - name: 'Echo job status'
+  #       run: echo ${{ needs.main-job2 }}
+  #     - name: 'Echo job status'
+  #       run: echo ${{ needs.main-job2.result }}
+  #     - name: 'Echo job status'
+  #       run: echo ${{ needs.main-job2.steps.outcome }}
+  #     - uses: actions/upload-artifact@v2
+  #       with:
+  #         name: 'allure-results'
+  #         path: ./e2e/imgFrom/
+  second-job:
+    #needs: [ main-job ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        # id: download
+        # with:
+        #   name: 'allure-results'
+        #   path: ./e2e/imgFrom/
+
+      - name: 'Triger another repo'
+        #run: echo ${{ steps.download.outputs.download-path }}
+
+#      - name: Unzip
+#        run: |
+#          sudo apt-get install unzip
+#          unzip ${{ steps.download.outputs.download-path }}/allure-results.zip
+
+      #- name: Report results
+        working-directory: ./scripts/inside/
+        run: |
+          chmod +x runRemoteWorkflow.bash
+          ./runRemoteWorkflow.bash ${{ steps.download.outputs.download-path }}
+#    - name: Sleep
+#      run: sleep 15m
+#    - name: Run repository2 workflow
+#      working-directory: ./scripts/inside
+#      run: |
+#        chmod +x ./runRemoteWorkflow.bash
+#        ./runRemoteWorkflow.bash ${{ secrets.TOKEN }} changed
+
+
+
+
+
+
+
+
+
+#fddfdfdf
+#sda sddasdas das da
+#df
+#swq
